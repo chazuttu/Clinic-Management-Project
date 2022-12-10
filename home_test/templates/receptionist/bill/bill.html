@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% include 'receptionist/common/header.html' %}
+
+<div class="department">
+
+ <div class="row page-head">
+  <div class="col-md-4 col-sm-3 col-xs-12">
+   <h1>bills</h1>
+  </div>
+  
+  <div class="col-md-8 col-sm-9 col-xs-12">
+   	<!-- search -->
+    <form class="search">
+	  <i class="fa fa-search" aria-hidden="true"></i>
+      <input type="search" class="filter" data-table="table" placeholder="search..." maxlength="100" />
+    </form>
+   <button type="button" onclick="window.location.href = '/home_test/readdbill/' ">Add New Bill</button>
+  </div> 
+ </div>
+
+ 
+<!-- details table -->
+ <div class="row">
+  <div class="col-md-12 table-responsive">
+  <div class="common-table">
+   <table class="table my-pagination">
+    <thead>
+	 <tr class="tr-head">
+	  <th>Sl.No</th>
+	  <th>Date</th>
+	  <th>Patient</th>
+	  <th>Doctor</th>
+	  <th>Treatment</th>
+	  <th>Amount</th>
+	 </tr>
+	</thead>
+
+	<tbody>
+    {% if bills %}
+    {% for bill in bills %}
+	<tr class="tr-body">
+	  <td>{{forloop.counter}}</td>
+	  <td>{{bill.date}}</td>
+	  <td>{{bill.patient}}</td>
+	  <td>{{bill.doctor}}</td>
+	  <td>{{bill.treatment}}</td>
+	  <td>{{bill.amount}}</td>
+	 </tr>
+   {% endfor %}
+   {% else %}
+    <tr class="no-data">
+    <td colspan="20">No Data</td>
+    </tr>
+    {% endif %}
+	</tbody>
+
+	<tfoot></tfoot>
+   </table>
+   </div>
+ </div>
+</div>
+<!-- /details table -->
+
+
+</div><!-- department -->
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% include 'receptionist/common/header.html' %}
+
+<div class="doctor-list">
+
+ <div class="row page-head">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+   <h1>doctor list</h1>
+  </div>
+  
+  <div class="col-md-8 col-sm-8 col-xs-12">
+   	<!-- search -->
+    <form class="search">
+	  <i class="fa fa-search" aria-hidden="true"></i>
+      <input type="search" class="filter" data-table="table" placeholder="search..." maxlength="100" />
+    </form>
+
+  </div> 
+ </div>
+
+ 
+<!-- details table -->
+ <div class="row">
+  <div class="col-md-12 table-responsive">
+  <div class="common-table">
+   <table class="table my-pagination">
+    <thead>
+	 <tr class="tr-head">
+	  <th>Sl.No</th>
+	  <th>Name</th>
+	  <th>Department</th>
+	  <th>Mobile No</th>
+	  <th>Qualifications</th>
+	 </tr>
+	</thead>
+
+	<tbody>
+	{% if doctors %}
+		{% for doc in doctors %}
+	<tr class="tr-body">
+	  <td>{{forloop.counter}}</td>
+	  <td>{{doc.user.first_name}} {{doc.user.last_name}}</td>
+	  <td>{{doc.user_specialised}}</td>
+	  <td>{{doc.user_mobile}}</td>
+	  <td>{{doc.user_qualification}}</td>
+	 </tr>
+	 {% endfor %}
+	 {% else %}
+     <tr class="no-data">
+      <td colspan="20">No Data</td>
+     </tr>
+     {% endif %}
+	</tbody>
+
+	<tfoot></tfoot>
+   </table>
+   </div>
+ </div>
+</div>
+<!-- /details table -->
+
+
+</div><!-- doctor-list -->
+
+{% endblock %}
